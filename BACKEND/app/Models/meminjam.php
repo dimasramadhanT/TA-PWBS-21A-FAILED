@@ -10,11 +10,11 @@ class Mmahasiswa extends Model
 {
     // use HasFactory;
 
-    //buat fungsi untuk ambil data "tb_mahasiswa"
+    //buat fungsi untuk ambil data "tb_admin"
     function getData()
     {
-        //tampilkan data dari "tb_mahasiswa"
-        $query = DB::table('tb_mahasiswa')
+        //tampilkan data dari "tb_admin"
+        $query = DB::table('tb_admin')
                 ->select("ID AS id_mahasiswa","NPM AS npm_mahasiswa","NAMA AS nama_mahasiswa","TELEPON AS telpon_mahasiswa",
                 "JURUSAN AS jurusan_mahasiswa")
                 ->orderBy("ID")
