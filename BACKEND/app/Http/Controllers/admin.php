@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Mmahasiswa;
+use App\Models\Madmin;
 use Illuminate\Support\Facedes\Mail;
 
 
-class Mahasiswa extends Controller
+class admin extends Controller
 {
     //buat variabel
     protected $model;
@@ -15,8 +15,8 @@ class Mahasiswa extends Controller
     //buat fungsi global
     function __construct()
     {
-        //inisialisasi variabel "model" dari model "Mmahasiswa"
-        $this->model = new Mmahasiswa();
+        //inisialisasi variabel "model" dari model "Madmin"
+        $this->model = new Madmin();
     }
 
     function getController()
@@ -25,7 +25,7 @@ class Mahasiswa extends Controller
         $result = $this->model->getData();
 
         //Kembalikan nilai variabel "result" ke dalam object "mahasiswa"
-        return response(["mahasiswa"=> $result], http_response_code());
+        return response(["admin"=> $result], http_response_code());
     }
 
     //Digunakan Untuk pencarian data
@@ -35,7 +35,7 @@ class Mahasiswa extends Controller
          $result = $this->model->searchData($keyword);
 
          //Kembalikan nilai variabel "result" ke dalam object "mahasiswa"
-        return response(["mahasiswa"=> $result], http_response_code());
+        return response(["admin"=> $result], http_response_code());
     }
 
     //buat fungsi detail data
@@ -45,7 +45,7 @@ class Mahasiswa extends Controller
                  $result = $this->model->detailData($id);
 
                  //Kembalikan nilai variabel "result" ke dalam object "mahasiswa"
-                return response(["mahasiswa"=> $result], http_response_code());
+                return response(["admin"=> $result], http_response_code());
         
     }
 
@@ -56,7 +56,7 @@ class Mahasiswa extends Controller
          //jika data tersedia
         if(count($this->model->detailData($id))==1)
          {
-            //lakukan penghapusan data(panggil fungsi "deleteData" dari Mmahasiswa)
+            //lakukan penghapusan data(panggil fungsi "deleteData" dari Madmin)
             $this->model->deleteData($id);
             //buat status dan pesan
             $status = 1;
@@ -68,7 +68,7 @@ class Mahasiswa extends Controller
             $message = "Data Gagal Dihapus ! (NPM Tidak Ditemukan)";
          }
 
-         //Kembalikan Nilai variabel "result" ke dalam object "Mahasiswa"
+         //Kembalikan Nilai variabel "result" ke dalam object "admin"
          return response(["status" => $status,"message"=>$message],http_response_code());
      }
      //buat fungsi untuk simpan data
@@ -111,7 +111,7 @@ class Mahasiswa extends Controller
         else
         {
             //lakukan penyimpanan data
-            //lakukan penginputan data(panggil fungsi "saveData" dari Mmahasiswa)
+            //lakukan penginputan data(panggil fungsi "saveData" dari Madmin)
             $this->model->saveData($data["buku"],$data["detail_peminjaman"],$data["failed_jobs"],
             $data["kategori"],$data["migrations"],$data["model_has_permissions"],$data["model_has_roles"],
             $data["paswword_reset"], $data["peminjaman"], $data["penerbit"], $data["permissons"],
@@ -120,7 +120,7 @@ class Mahasiswa extends Controller
             $status = 1;
             $message = "Data berhasil di simpan !";
         }
-        //Kembalikan Nilai variabel "result" ke dalam object "Mahasiswa"
+        //Kembalikan Nilai variabel "result" ke dalam object "Admin"
         return response(["status" => $status,"message"=>$message],http_response_code());
      }
 
@@ -152,7 +152,7 @@ class Mahasiswa extends Controller
         if(count($this->model->checkUpdateData($data["NPM"],$id))==0)
         {
             //Lakukan perubahan data
-            //panggil model checkupdatedata dari model "Mmahasiswa"
+            //panggil model checkupdatedata dari model "Madmin"
             $this->model->updateData($data["NPM"],$data["NAMA"],$data["JURUSAN"],$data["TELEPON"], $id);
 
             $status = 1;
@@ -165,7 +165,7 @@ class Mahasiswa extends Controller
             $message = "Data Gagal DiUpdate !";
         }
        
-        //Kembalikan Nilai variabel "result" ke dalam object "Mahasiswa"
+        //Kembalikan Nilai variabel "result" ke dalam object "Admin"
        return response(["status" => $status,"message"=>$message],http_response_code());
      }
 }
